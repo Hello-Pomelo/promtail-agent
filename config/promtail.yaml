@@ -1,0 +1,34 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: https://loki.pomelo-dev.fr/loki/api/v1/push
+    tenant_id: MY_TENANT
+
+scrape_configs:
+- job_name: containers
+  docker_sd_configs:
+    - host: unix:///var/run/docker.sock
+      refresh_interval: 5s
+  relabel_configs:
+    - source_labels: ['__meta_docker_container_name']
+      regex: '/(.*)'
+      target_label: 'container'
+    - source_labels: ['__meta_docker_container_log_stream']
+      target_label: 'logstream'
+    - source_labels: ['__meta_docker_container_name']
+      regex: 'promtail-agent'
+      action: drop
+    - source_labels: ['__meta_docker_container_name']
+      regex: 'prometheus'
+      action: drop
+    - source_labels: ['__meta_docker_container_name']
+      regex: 'node-exporter'
+      action: drop
+    - source_labels: ['__meta_docker_container_name']
+      regex: 'grafana'
+      action: drop
