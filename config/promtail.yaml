@@ -6,7 +6,7 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  - url: https://loki.pomelo-dev.fr/loki/api/v1/push
+  - url: https://MY_LOKI_DOMAIN/loki/api/v1/push
     tenant_id: MY_TENANT
 
 scrape_configs:

@@ -5,7 +5,8 @@ Promtail est un agent utilisé pour collecter des logs et les envoyer à Loki, u
 
 ## Prérequis
 - Clone du repository.
-- Modification du tenant_id dans config/promtail.yaml.
+- Modification du tenant_id dans config/promtail.yaml (MY_TENANT).
+- Modification du Loki domain dans config/promtail.yaml (MY_LOKI_DOMAIN).
 
 ## Installation
 
